@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table style="text-align: center">
+        <thead>
+            <tr>
+                {% for i in data.data|first %}
+                    {% if i != 'id' %}
+                        <th>{{i}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data.data %}
+            <tr>
+                {% for col,value in row.items %}
+                    {% if col != 'id' %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>
+                    <form method = "post" action="edit/{{ row.id }}">
+                        {% csrf_token %}
+                        <input type="submit" value="Edit"></input>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="delete/{{ row.id }}">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete"></input>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
