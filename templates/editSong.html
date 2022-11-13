@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/submitchanges/{{data.data.id}}">
+        {% csrf_token %}
+        Song Name: <input type="text" value="{{ data.data.SongName }}" name="SongName"/><br/>
+        Artist: <input type="text" value="{{ data.data.Artist }}" name="Artist"/><br/>
+        Album: <input type="text" value="{{ data.data.Album }}" name="Album"/><br/>
+        Release Year: <input type="text" value="{{ data.data.YearReleased }}" name="YearReleased"/><br/>
+        <input type="submit"/>
+    </form>
+    
+</body>
+</html>
