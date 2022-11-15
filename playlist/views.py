@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Songs
 
 # Create your views here.
@@ -12,8 +11,10 @@ def indexPageView(request):
 
 
 def createPageView(request):
-    return HttpResponse('Create Your Playlist')
+    return render(request, 'addSong.html')
 
+def addRecordView(request):
+    return redirect(indexPageView)
 
 def editPageView(request, sid):
     song = Songs.objects.values().get(id=sid)

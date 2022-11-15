@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/addrecord/">
+        {% csrf_token %}
+        Song Name: <input type="text" name="SongName"/><br/>
+        Artist: <input type="text" name="Artist"/><br/>
+        Album: <input type="text" name="Album"/><br/>
+        Release Year: <input type="text" name="YearReleased"/><br/>
+        <input type="submit"/>
+    </form>
+</body>
+</html>
