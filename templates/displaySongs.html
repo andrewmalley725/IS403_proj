@@ -41,5 +41,10 @@
             {% endfor %}
         </tbody>
     </table>
+</br>
+<form method="post" action="create/">
+    {% csrf_token %}
+    <input type="submit" value="Add Song"/>
+</form> 
 </body>
 </html>
