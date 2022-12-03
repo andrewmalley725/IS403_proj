@@ -1,50 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table style="text-align: center">
-        <thead>
-            <tr>
-                {% for i in data.data|first %}
-                    {% if i != 'id' %}
-                        <th>{{i}}</th>
-                    {% endif %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container py-5 mb5">
+        <div >
+            <img src="{% static 'img/CassetteRemix 1.svg'%}" alt="cassette tape" class = 'cassettediv'>
+        </div>
+        
+        
+        <table class="table">
+            <thead class='thead-light'>
+                <tr>
+                    {% for i in data.data|first %}
+                        {% if i != 'id' %}
+                            <th scope="col">{{i}}</th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for row in data.data %}
+                <tr scope="row">
+                    {% for col,value in row.items %}
+                        {% if col != 'id' %}
+                            <td>{{ value }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td>
+                        <form method = "post" action="edit/{{ row.id }}">
+                            {% csrf_token %}
+                            <input type="submit" value="Edit" class="btn btn-sm btn-primary my-1 my-sm-0"></input>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="delete/{{ row.id }}">
+                            {% csrf_token %}
+                            
+                            <input type="submit" value="Delete" class="btn btn-sm btn-danger my-1 my-sm-0"></input>
+                        </form>
+                    </td>
+                    
+                </tr>
                 {% endfor %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in data.data %}
-            <tr>
-                {% for col,value in row.items %}
-                    {% if col != 'id' %}
-                        <td>{{ value }}</td>
-                    {% endif %}
-                {% endfor %}
-                <td>
-                    <form method = "post" action="edit/{{ row.id }}">
-                        {% csrf_token %}
-                        <input type="submit" value="Edit"></input>
-                    </form>
-                </td>
-                <td>
-                    <form method="post" action="delete/{{ row.id }}">
-                        {% csrf_token %}
-                        <input type="submit" value="Delete"></input>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</br>
-<form method="post" action="create/">
-    {% csrf_token %}
-    <input type="submit" value="Add Song"/>
-</form> 
-</body>
-</html>
+            </tbody>
+        </table>
+        </br>
+        <form method="post" action="create/">
+            {% csrf_token %}
+            <input type="submit" value="Add Song" class="btn btn-primary btn-lg btn-block"/>
+        </form> 
+    </div>
+{% endblock %}

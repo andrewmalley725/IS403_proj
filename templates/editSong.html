@@ -1,20 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post" action="/submitchanges/{{data.data.id}}">
-        {% csrf_token %}
-        Song Name: <input type="text" value="{{ data.data.SongName }}" name="SongName"/><br/>
-        Artist: <input type="text" value="{{ data.data.Artist }}" name="Artist"/><br/>
-        Album: <input type="text" value="{{ data.data.Album }}" name="Album"/><br/>
-        Release Year: <input type="text" value="{{ data.data.YearReleased }}" name="YearReleased"/><br/>
-        <input type="submit"/>
-    </form>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
     
-</body>
-</html>
+    <div class="container py-5 mb5">
+        <div class="col-md-8 order-md-1">
+            <h1>Edit Song:</h1><br>
+            <form method="post" action="/submitchanges/{{data.data.id}}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="SongName">Song Name:</label><br>
+                    <input type="text" value="{{ data.data.SongName }}" name="SongName" class="form-control"/><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="Artist">Artist:</label> <br>
+                    <input type="text" value="{{ data.data.Artist }}" name="Artist" class="form-control"/><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="Album">Album:</label> <br>
+                    <input type="text" value="{{ data.data.Album }}" name="Album" class="form-control"/><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="YearReleased">Release Year:</label><br>
+                    <input type="text" value="{{ data.data.YearReleased }}" name="YearReleased" class="form-control"/><br/>
+                </div>
+                <input type="submit" class="btn btn-primary btn-lg btn-block"/>
+            </form>
+        </div>
+    </div>
+
+    
+{% endblock %}
