@@ -9,11 +9,25 @@ def indexPageView(request):
     }
     return render(request, 'displaySongs.html', {'data':context})
 
-
 def createPageView(request):
     return render(request, 'addSong.html')
 
 def addRecordView(request):
+    if request.method == 'POST':
+        name = request.POST['SongName']
+        artist = request.POST['Artist']
+        album = request.POST['Album']
+        year = request.POST['YearReleased']
+
+        song = Songs()
+
+        song.SongName = name
+        song.Artist = artist
+        song.Album = album
+        song.YearReleased = year
+
+        song.save()
+
     return redirect(indexPageView)
 
 def editPageView(request, sid):
@@ -21,7 +35,6 @@ def editPageView(request, sid):
     context = {
         'data':song
     }
-    print(context)
     return render(request, 'editSong.html', {'data':context})
 
 def submitChanges(request,sid):
