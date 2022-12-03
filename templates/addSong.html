@@ -1,19 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post" action="/addrecord/">
-        {% csrf_token %}
-        Song Name: <input type="text" name="SongName"/><br/>
-        Artist: <input type="text" name="Artist"/><br/>
-        Album: <input type="text" name="Album"/><br/>
-        Release Year: <input type="text" name="YearReleased"/><br/>
-        <input type="submit"/>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container py-5 mb5">
+        <div class="col-md-8 order-md-1">
+            <h1>Add Song</h1><br>
+            <form method="post" action="/addrecord/">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="SongName">Song Name:</label><br>
+                    <input type="text" name="SongName" class="form-control" /><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="Artist">Artist:</label> <br>
+                    <input type="text" name="Artist" class="form-control"/><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="Album">Album:</label> <br>
+                    <input type="text" name="Album" class="form-control"/><br/>
+                </div>
+                <div class="mb-3">
+                    <label for="YearReleased">Release Year:</label><br>
+                    <input type="text" name="YearReleased" class="form-control"/><br/>
+                </div>
+                <input type="submit" class="btn btn-primary btn-lg btn-block"/>
+            </form>
+        </div>
+        
+    </div>
+
+{% endblock %}
+
