@@ -1,5 +1,5 @@
 from django.urls import include, path
-from .views import indexPageView, createPageView, editPageView, deletePageView, submitChanges, addRecordView
+from .views import indexPageView, createPageView, editPageView, deletePageView, submitChanges, addRecordView, reorderTable
 
 urlpatterns = [
     path('', indexPageView, name="index"),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('addrecord/', addRecordView, name="add"),
     path('submitchanges/<int:sid>', submitChanges, name='submit'),
     path('delete/<int:sid>', deletePageView, name='delete'),
+    path('reorder/', reorderTable, name='reorder'),
 ]

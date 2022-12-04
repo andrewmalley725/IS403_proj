@@ -1,0 +1,41 @@
+<table class="table">
+    <thead class='thead-light'>
+        <tr>
+            {% for i in data.data|first %}
+                {% if i != 'id' %}
+                    <th scope="col">{{i}}</th>
+                {% endif %}
+            {% endfor %}
+            <th></th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        
+        {% for row in data.data %}
+        <tr scope="row">
+            {% for col,value in row.items %}
+                {% if col != 'id' %}
+                    <td>{{ value }}</td>
+                {% endif %}
+            {% endfor %}
+            
+            <td>
+                <form method = "post" action="edit/{{ row.id }}">
+                    {% csrf_token %}
+                    <input type="submit" value="Edit" class="btn btn-sm btn-primary my-1 my-sm-0"></input>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="delete/{{ row.id }}">
+                    {% csrf_token %}
+                    
+                    <input type="submit" value="Delete" class="btn btn-sm btn-danger my-1 my-sm-0"></input>
+                </form>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

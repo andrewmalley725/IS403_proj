@@ -2,10 +2,18 @@
 {% load static %}
 {% block content %}
 
-    <div class="container py-5 mb5">
+    <div id='main' class="container py-5 mb5">
         <div >
             <img src="{% static 'img/CassetteRemix 1.svg'%}" alt="cassette tape" class = 'cassettediv'>
-        </div>        
+        </div>
+        <select name ="orderby" id="orderby" hx-get="/reorder/" hx-trigger"change" hx-target="#table">
+            <option selected disabled value="SongName">Order By</option>
+            {% for i in data.cats %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select> 
+        <br/>
+        <div id="table">       
         <table class="table">
             <thead class='thead-light'>
                 <tr>
@@ -14,6 +22,8 @@
                             <th scope="col">{{i}}</th>
                         {% endif %}
                     {% endfor %}
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +53,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
         </br>
         <form method="post" action="create/">
             {% csrf_token %}
