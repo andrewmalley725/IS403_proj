@@ -1,1 +1,0 @@
-web: python manage.py migrate && gunicorn IS403_proj.wsgi
